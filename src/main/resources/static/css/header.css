@@ -1,0 +1,20 @@
+.header {
+    width:1200px;
+}
+
+.header__top{
+    display:flex;
+    flex-direction: row-reverse;
+    gap:12px;
+}
+
+.header__mid {
+    height: 120px;
+    background: red;
+}
+
+.header__bot
+{
+    display: flex;
+    gap: 12px;
+}
