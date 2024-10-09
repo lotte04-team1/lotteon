@@ -16,6 +16,8 @@
     margin: 12px 0;
     height:40px;
     font-size:12px;
+    width:1200px;
+    height:100%;
 }
 
 
@@ -26,11 +28,17 @@
     height:100px;
 }
 
+
 .header__bot  .logo {
     width: 240px;
     height:80px;
     display:block;
     margin-top: 12px;;
+}
+
+.header__bot__wrapper {
+    width:1200px;
+    height:100%;
 }
 
 .logo__img {
