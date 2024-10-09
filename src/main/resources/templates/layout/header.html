@@ -1,10 +1,9 @@
 <link rel="stylesheet" href="/static/css/header.css">
-<link rel="stylesheet" href="/static/css/header-nav.css">
 <link rel="stylesheet" href="/static/css/common.css">
 <link rel="stylesheet" href="/static/css/reset.css">
 <header class="header">
     <div class="header__top">
-        <div class="wrapper center header__top__nav">
+        <div class="center header__top__nav">
             
                 <a href="#" th:href="@{/member/login}">로그인</a>
                 <a href="#" th:href="@{/member/join}">회원가입</a>
@@ -15,8 +14,8 @@
         </div>
     </div>
     <div class="header__bot">
-        <div class="wrapper center">
-            <a class="logo" th:href="@{/}"><img class="logo__img" src="/static/images/header_logo.png" th:src="@{/images/header_logo.png}" alt="로고"/></a>
+        <div class="header__bot__wrapper center">
+            <a class="logo" href="#" th:href="@{/}"><img class="logo__img" src="/static/images/header_logo.png" th:src="@{/images/header_logo.png}" alt="로고"/></a>
             <form class="search" action="/lotteon/product/search" method="get">
                 <input class="search__input" type="text" name="keyword"/>
                 <!-- <input  type="hidden" name="cateCode" id="cateCodeInput" value=""> -->
@@ -25,20 +24,3 @@
         </div>
     </div>
 </header>
-<nav class="header-nav">
-    <div class="wrapper center header-nav__flex">
-        <div class="header-nav__flex__left">
-            <a href="#">키즈상품</a>
-            <a href="#">추천상품</a>
-            <a href="#">최신상품</a>
-            <a href="#">인기상품</a>
-            <a href="#">할인상품</a>
-        </div>
-        <div class="header-nav__flex__right">
-            <a href="#">공지사항</a>
-            <a href="#">자주하는질문</a>
-            <a href="#">문의하기</a>
-            <a href="#">고객센터</a>
-        </div>
-    </div>
-</nav>

@@ -9,10 +9,16 @@
 
 
 .header-nav__flex {
+    width:1200px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
+.header-nav__flex {
+    height:100%;
+}
+
 
 .header-nav__flex__left {
     display: flex;
