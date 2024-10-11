@@ -9,40 +9,32 @@
     <link rel="shortcut icon" type="image/x-icon" href="/static/images/main/favicon.ico" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="/static/css/my/star-rating-svg.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script src="/static/js/member/zipcode.js"></script>
-    <script src="/staticjs/my/jquery.star-rating-svg.min.js"></script>
-    <script src="/static/js/my/popup.js"></script>
     <link rel="stylesheet" href="/static/css/my/style.css">
+    <link rel="stylesheet" href="/static/css//header.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="/static/css/my/order.css">
 </head>
 <body>
     <div id="wrapper">
-        <header>
-            <div class="top">
-                <div>
-                    <!-- 로그인 안 한 경우 -->
-                    <a href="/member/login">로그인</a>
-                    <a href="/member/join">회원가입</a>
-
-                    <!-- 로그인 한 경우 -->
-                    <a href="#">마이페이지</a>
-                    <a href="/admin/index">관리자</a>
-                    <a href="/member/logout">로그아웃</a>
-                    <a href="#">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; 장바구니
-                    </a>
+        <header class="header">
+            <div class="header__top">
+                <div class="center header__top__nav">
+                    
+                        <a href="#" th:href="@{/member/login}">로그인</a>
+                        <a href="#" th:href="@{/member/join}">회원가입</a>
+                        <a href="#" th:href="@{/my/home(userId=${#authentication.principal.user.userId})}">마이페이지</a>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니
+                        </a>
+                        <a href="#" th:href="@{/member/logout}">로그아웃</a>
                 </div>
             </div>
-            <div class="logo">
-                <div>
-                    <a href="/"><img src="/static/images/main/header_logo.png" alt="로고"/></a>
-                    <form action="#">
-                        <input type="text" name="search"/>
-                        <button><i class="fa fa-search"></i></button>
+            <div class="header__bot">
+                <div class="header__bot__wrapper center">
+                    <a class="logo" href="#" th:href="@{/}"><img class="logo__img" src="/static/images/header_logo.png" th:src="@{/images/header_logo.png}" alt="로고"/></a>
+                    <form class="search" action="/lotteon/product/search" method="get">
+                        <input class="search__input" type="text" name="keyword"/>
+                        <!-- <input  type="hidden" name="cateCode" id="cateCodeInput" value=""> -->
+                        <button class="search__btn"><img width="18" class="search__btn__img" src="/static/images/search.svg" /></button>
                     </form>
                 </div>
             </div>
@@ -138,137 +130,9 @@
                             <a href="#" class="refund">반품신청</a>
                             <a href="#" class="exchange">교환신청</a>
                         </td>
-                    </tr>
-
-                    <tr>
-                        <td class="date" text="${myitem.ordDate.toLocalDate()}">2022-12-13</td>
-                        <td class="info">
-                            <a href="#" class="thumb"><img src="/static/images/admin/sample_thumb.jpg" alt="상품이미지"></a>
-                            <ul>
-                                <li class="company"><a href="#" text="${myitem.company}" value="${myitem.company}" onclick="seller([[${myitem.seller}]],[[${myitem.ordUid}]])">
-                                    상호명</a></li>
-                                <li class="prodName"><a href="#" text="${myitem.prodName}" >상품명</a></li>
-                                <li class="orderNo">수량 : <span class="prodCount" text="${myitem.count}">1</span>개 / 주문번호 : <a href="#" text="${myitem.ordNo}" onclick="product([[${myitem.itemNo}]])">1012211341</a></li>
-                                <li class="prodPrice" text="${myitem.price}">34,000</li>
-                            </ul>
-                        </td>
-
-                            <td class="status" text="${myitem.ordStatus == '1'} ? '배송중' : '배송완료'"></td>
-                        <td class="confirm">
-                            <!-- 수취확인 -->
-                            <a href="#" class="receive" onclick="'javascript:receivePop(' + ${myitem.ordNo} + '); return false;'"></a>
-                            <!-- 상품평 -->
-                            <a href="#" class="review" onclick="'javascript:reviewPop(' + ${myitem.prodNo} + ', ' + ${myitem.ordNo} + ','+${myitem.price}+'); return false;'"></a>
-                            <a href="#" class="refund">반품신청</a>
-                            <a href="#" class="exchange">교환신청</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="date" text="${myitem.ordDate.toLocalDate()}">2022-12-13</td>
-                        <td class="info">
-                            <a href="#" class="thumb"><img style src="/static/images/admin/sample_thumb.jpg" alt="상품이미지"></a>
-                            <ul>
-                                <li class="company"><a href="#" text="${myitem.company}" value="${myitem.company}" onclick="seller([[${myitem.seller}]],[[${myitem.ordUid}]])">
-                                    상호명</a></li>
-                                <li class="prodName"><a href="#" text="${myitem.prodName}" >상품명</a></li>
-                                <li class="orderNo">수량 : <span class="prodCount" text="${myitem.count}">1</span>개 / 주문번호 : <a href="#" text="${myitem.ordNo}" onclick="product([[${myitem.itemNo}]])">1012211341</a></li>
-                                <li class="prodPrice" text="${myitem.price}">34,000</li>
-                            </ul>
-                        </td>
-
-                            <td class="status" text="${myitem.ordStatus == '1'} ? '배송중' : '배송완료'"></td>
-                        <td class="confirm">
-                            <!-- 수취확인 -->
-                            <a href="#" class="receive" onclick="'javascript:receivePop(' + ${myitem.ordNo} + '); return false;'"></a>
-                            <!-- 상품평 -->
-                            <a href="#" class="review" onclick="'javascript:reviewPop(' + ${myitem.prodNo} + ', ' + ${myitem.ordNo} + ','+${myitem.price}+'); return false;'"></a>
-                            <a href="#" class="refund">반품신청</a>
-                            <a href="#" class="exchange">교환신청</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="date" text="${myitem.ordDate.toLocalDate()}">2022-12-13</td>
-                        <td class="info">
-                            <a href="#" class="thumb"><img style src="/static/images/admin/sample_thumb.jpg" alt="상품이미지"></a>
-                            <ul>
-                                <li class="company"><a href="#" text="${myitem.company}" value="${myitem.company}" onclick="seller([[${myitem.seller}]],[[${myitem.ordUid}]])">
-                                    상호명</a></li>
-                                <li class="prodName"><a href="#" text="${myitem.prodName}" >상품명</a></li>
-                                <li class="orderNo">수량 : <span class="prodCount" text="${myitem.count}">1</span>개 / 주문번호 : <a href="#" text="${myitem.ordNo}" onclick="product([[${myitem.itemNo}]])">1012211341</a></li>
-                                <li class="prodPrice" text="${myitem.price}">34,000</li>
-                            </ul>
-                        </td>
-
-                            <td class="status" text="${myitem.ordStatus == '1'} ? '배송중' : '배송완료'"></td>
-                        <td class="confirm">
-                            <!-- 수취확인 -->
-                            <a href="#" class="receive" onclick="'javascript:receivePop(' + ${myitem.ordNo} + '); return false;'"></a>
-                            <!-- 상품평 -->
-                            <a href="#" class="review" onclick="'javascript:reviewPop(' + ${myitem.prodNo} + ', ' + ${myitem.ordNo} + ','+${myitem.price}+'); return false;'"></a>
-                            <a href="#" class="refund">반품신청</a>
-                            <a href="#" class="exchange">교환신청</a>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="date" text="${myitem.ordDate.toLocalDate()}">2022-12-13</td>
-                        <td class="info">
-                            <a href="#" class="thumb"><img style src="/static/images/admin/sample_thumb.jpg" alt="상품이미지"></a>
-                            <ul>
-                                <li class="company"><a href="#" text="${myitem.company}" value="${myitem.company}" onclick="seller([[${myitem.seller}]],[[${myitem.ordUid}]])">
-                                    상호명</a></li>
-                                <li class="prodName"><a href="#" text="${myitem.prodName}" >상품명</a></li>
-                                <li class="orderNo">수량 : <span class="prodCount" text="${myitem.count}">1</span>개 / 주문번호 : <a href="#" text="${myitem.ordNo}" onclick="product([[${myitem.itemNo}]])">1012211341</a></li>
-                                <li class="prodPrice" text="${myitem.price}">34,000</li>
-                            </ul>
-                        </td>
-
-                            <td class="status" text="${myitem.ordStatus == '1'} ? '배송중' : '배송완료'"></td>
-                        <td class="confirm">
-                            <!-- 수취확인 -->
-                            <a href="#" class="receive" onclick="'javascript:receivePop(' + ${myitem.ordNo} + '); return false;'"></a>
-                            <!-- 상품평 -->
-                            <a href="#" class="review" onclick="'javascript:reviewPop(' + ${myitem.prodNo} + ', ' + ${myitem.ordNo} + ','+${myitem.price}+'); return false;'"></a>
-                            <a href="#" class="refund">반품신청</a>
-                            <a href="#" class="exchange">교환신청</a>
-                        </td>
-                    </tr>
-
-                    
+                    </tr>                
                     </block>
                 </table>
-
-
-                <!-- 주문내역 목록 -->
-                <!-- <div class="myOrderList">
-                    <div class="orderByCompany latest">
-                        <div class="myOrderTitle">
-                            <p>2023-10-09</p>
-                            <p class="orderNo">주문번호<span onclick="orderDetailModal()" style="cursor: pointer">1234567890</span></p>
-                            <p>
-                                <img src="/static/images/icon-arrow-top.png" onclick="accordionBtn()">
-                            </p>
-                        </div>
-                        <div class="myOrderRow">
-                            <div><img src="/uploads/product1.jpg"></div>
-                            <div class="myOrderInfo">
-                                <p class="company">롯데</p>
-                                <p class="InfoProdName">제품 이름</p>
-                                <p>1개</p>
-                                <p>50,000원</p>
-                            </div>
-                            <div>배송 완료</div>
-                            <div class="confirm">
-                                <span class="receive" onclick="checkComplete()" id="123456">수취확인</span>
-                                <span class="review" onclick="moveProdData()" id="987654" data-detailNo="123456">상품평쓰기</span>
-                                <span>반품신청</span>
-                                <span class="btnQuestion" onclick="writeProdQna()" id="987654">문의하기</span>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
 
                 <p class="page">
                     <a href="/my/order?pg=1">이전</a>
