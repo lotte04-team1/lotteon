@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Myinfo</title>
+        <link rel="stylesheet" href="/static/css//header.css">
+        <link rel="stylesheet" href="/static/css/footer.css">
+        <link rel="stylesheet" href="/static/css/reset.css">
+        <style>
+            #wrapper{
+                width: 1080px;
+            }
+            .info {
+                display: flex;
+                align-items: flex-start; /* 회원정보 설정과 사이드바를 수평으로 배치 */
+                margin-left: 15px;
+            }
+            .info ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                width: 200px; /* 어사이드 너비 */
+                padding: 10px;
+                border-right: 1px solid #ccc;
+                height: 100%; /* 전체 높이 설정 */
+            }
+            .info ul li {
+                padding: 10px 0;
+            }
+            .info section {
+                margin-top: 20px;
+                margin-left: 20px; /* 어사이드와 간격을 두기 위해 여백 설정 */
+                flex-grow: 1;
+            }
+            .info .infobutton {
+                height: 30px;
+                background-color: #343b4d;
+                color: white;
+                border: none;
+                cursor: pointer;
+                border-radius: 5px
+            }
+            .banner {
+                display: block;
+                margin-bottom: 20px;
+                width: 810px;
+                height: 86px; /* 고정된 크기 */
+                object-fit: cover; /* 이미지가 비율을 유지하며 크기에 맞게 조정되도록 설정 */
+            }
+            input[type="text"],
+            select {
+                height: 30px;
+            }
+            .heighttable{
+                border-collapse: collapse;
+                width: 845px;
+                border-top: 0.4px solid black;
+                border-bottom: 0.4px solid black;
+            }
+            
+            .heighttable tr {
+                height: 47px;
+            }
+            .heighttable th {
+                background-color: #F2F2F2;
+                width: 155px;
+            }
+            .heighttable td {
+                padding-left: 15px;
+            }
+            .heighttable tr:nth-child(5) td input{
+                width: 125px;
+            }
+
+            .heighttable tr:nth-child(6) td input{
+                width: 100px;
+            }
+
+            .heighttable tr:nth-child(7) td input:nth-of-type(1) {
+                width: 185px;
+                margin-bottom: 5px;
+            }
+
+            .heighttable tr:nth-child(7) td input:nth-of-type(2),
+            .heighttable tr:nth-child(7) td input:nth-of-type(3) {
+                margin-bottom: 5px;
+                width: 382px;
+            }
+
+            .memberLeave {
+                padding-top: 14px;
+                text-align: right;
+            }
+            .memberLeave a {
+                font-size: 14px;
+                line-height: 1.64;
+                letter-spacing: -.03em;
+                color: #999;
+                text-decoration: underline;
+            }
+            
+            .myinfosubmitbutton{
+                display: flex; /* 플렉스 박스 활성화 */
+                justify-content: center; /* 가로 중앙 정렬 */
+                gap: 5px;
+                margin-bottom: 10px;
+            }
+            .myinfosubmitbutton button{
+                background-color: #ef2a23;
+                /* 343b4d */
+                border: 0px;
+                width: 133px;
+                height: 40px;
+                color: white;
+                cursor: pointer;
+                border-radius: 5px
+                
+            }
+
+            .myinfotopside {
+                height: 75px; /* 높이 지정 */
+                background-color: #f2f2f2; /* 배경색 설정 */
+                padding: 10x 20px; /* 좌우 여백 추가 */
+            }
+
+            .myinfotopside div {
+                display: flex;
+                align-items: center; /* 세로 가운데 정렬 */
+                justify-content: space-between; /* 좌우로 배치 */
+                margin-left: 10px;
+            }
+            .myinfotopside .shopping-info {
+                flex-grow: 1; /* 공간 차지 */
+                text-align: left;
+                padding-left: 50px; /* 더 안쪽으로 밀어 넣기 */
+                padding-top: 10px;
+            }
+            .myinfotopside ol {
+                display: flex;
+                list-style: none;
+                padding-top: 15px;
+            }
+
+            .myinfotopside ol li {
+                border-right: 0.4px solid #97989b; /* 각 li 요소 간 경계선 */
+                margin-right: 20px; /* 간격 */
+                text-align: center;
+                padding-right: 20px;
+            }
+
+            .myinfotopside ol li:last-child {
+                border-right: none; /* 마지막 항목에는 경계선 제거 */
+            }
+
+            /* 숫자 출력 스타일 */
+            .myinfotopside ol li span {
+                display: block;
+                font-size: 18px; /* 숫자의 크기 */
+                font-weight: bold; /* 숫자 굵게 */
+            }
+
+            .myinfotopside ol li small {
+                display: block;
+                font-size: 14px; /* 설명 텍스트 크기 */
+                color: #555;
+            }
+        </style>
+    </head>
+<!--내용 시작-->
+<body>
+<!-- Include the header here -->
+<header class="header">
+    <div class="header__top">
+        <div class="center header__top__nav">
+            <a href="#" th:href="@{/member/login}">로그인</a>
+            <a href="#" th:href="@{/member/join}">회원가입</a>
+            <a href="#" th:href="@{/my/home(userId=${#authentication.principal.user.userId})}">마이페이지</a>
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니
+            </a>
+            <a href="#" th:href="@{/member/logout}">로그아웃</a>
+        </div>
+    </div>
+    <div class="header__bot">
+        <div class="header__bot__wrapper center">
+            <a class="logo" href="#" th:href="@{/}"><img class="logo__img" src="/static/images/header_logo.png" th:src="@{/images/header_logo.png}" alt="로고"/></a>
+            <form class="search" action="/lotteon/product/search" method="get">
+                <input class="search__input" type="text" name="keyword"/>
+                <!-- <input  type="hidden" name="cateCode" id="cateCodeInput" value=""> -->
+                <button class="search__btn"><img width="18" class="search__btn__img" src="/static/images/search.svg" /></button>
+            </form>
+        </div>
+    </div>
+</header>
+<div id="wrapper">
+    <nav class="myinfotopside">
+        <div>
+            <a href="#" class="shopping-info">나의쇼핑정보</a>
+
+            <ol>
+                <li>
+                    <a href="/my/order">주문<br><span>2</span></a>
+                </li>
+                <li>
+                    <a href="/my/coupon">쿠폰<br><span>1</span></a>
+                </li>
+                <li>
+                    <a href="/my/point">포인트<br><span>1,000</span></a>
+                </li>
+                <li>
+                    <a href="/my/qna">문의<br><span>1</span></a>
+                </li>
+            </ol>
+        </div>
+    </nav>
+    <div class="info">
+        <!-- 마이페이지 사이드바 -->
+        <ul>
+            <li><a href="#">전체주문내역</a></li>
+            <li><a href="#">포인트내역</a></li>
+            <li><a href="#">쿠폰</a></li>
+            <li><a href="#">나의리뷰</a></li>
+            <li><a href="#">문의하기</a></li>
+            <li><a href="#">나의설정</a></li>
+        </ul>
+    
+        <!-- 회원정보 섹션 -->
+        <section>
+            <a href="#"><img src="/static/images/image.PNG" alt="패션, 타운 하나로 끝" class="banner"></a> <!-- 810x86 배너 이미지 -->
+    
+            <article class="myTableStyle">
+                <h3 class="myTableHead">회원정보 설정</h3>
+                <table border="0" class="heighttable">
+                    <tr>
+                        <th>사용자 ID</th>
+                        <td>chh***</td>
+                    </tr>
+                    <tr>
+                        <th>비밀번호</th>
+                        <td><button class="infobutton">비밀번호수정</button></td>
+                    </tr>
+                    <tr>
+                        <th>이름</th>
+                        <td>김*학</td>
+                    </tr>
+                    <tr>
+                        <th>생년월일</th>
+                        <td>1983년 05월 03일</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>
+                            <input type="text" id="emailLocalPart" placeholder="이메일 아이디" />@
+                            <input type="text" id="emailDomain" placeholder="이메일 도메인" />
+                            <select id="domainSelect">
+                                <option value="직접 입력">직접 입력</option>
+                                <option value="naver.com">naver.com</option>
+                                <option value="gmail.com">gmail.com</option>
+                                <option value="daum.net">daum.net</option>
+                            </select>
+                            <button class="infobutton" onclick="updateEmail()">변경</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>휴대폰</th>
+                        <td>
+                            <input type="text" id="phone1" maxlength="3" placeholder="010" /> - 
+                            <input type="text" id="phone2" maxlength="4" placeholder="1234" /> - 
+                            <input type="text" id="phone3" maxlength="4" placeholder="5678" />
+                            <button class="infobutton" onclick="updatePhone()">변경</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>주소</th>
+                        <td>
+                            <input type="text" id="postalCode" placeholder="우편번호" />
+                            <button class="infobutton" onclick="searchPostalCode()">주소검색</button><br/>
+                            <input type="text" id="address1" placeholder="기본주소입력" /><br/>
+                            <input type="text" id="address2" placeholder="상세주소입력" />
+                        </td>
+                    </tr>
+                </table>
+            </article>
+    
+            <div class="memberLeave">
+                <a href="#">탈퇴하기</a>
+            </div>
+    
+            <div class="myinfosubmitbutton">
+                <button>수정하기</button>
+            </div>
+        </section>
+    </div>
+</div>
+<footer class="footer">
+    <ul class="footer__links">
+        <li class="footer__link"><a href="#">회사소개</a></li>
+        <li class="footer__link"><a href="#">서비스이용약관</a></li>
+        <li class="footer__link"><a href="#">개인정보처리방침</a></li>
+        <li class="footer__link"><a href="#">전자금융거래약관</a></li>
+        <li class="footer__link"><a href="#">1.0.0</a></li>
+    </ul>
+    <div class="footer__info">
+        <p class="footer__logo"><img src="/static/images/footer_logo.png" alt="로고"></p>
+        <p class="footer__company-info">
+            <strong>(주)LotteON</strong><br>
+            부산시 강남구 테헤란로 152 (역삼동 강남파이낸스센터)<br>
+            대표이사 : 홍길동<br>
+            사업자등록번호 : 220-81-83676 사업자정보확인<br>
+            통신판매업신고 : 강남 10630호 Fax : 02-589-8842
+        </p>
+        <p class="footer__customer-service">
+            <strong>고객센터</strong><br>
+            Tel : 1234-5678 (평일 09:00~18:00)<br>
+            스마일클럽/SVIP 전용 : 1522-5700 (365일 09:00~18:00)<br>
+            경기도 부천시 원미구 부일로 223(상동) 투나빌딩 6층<br>
+            Fax : 051-123-4567 | Mail : LotteON@LotteON.co.kr
+        </p>
+    </div>
+</footer>
+<script>
+    document.getElementById('domainSelect').addEventListener('change', function() {
+    var emailDomainInput = document.getElementById('emailDomain');
+    if (this.value === '직접 입력') {
+        emailDomainInput.value = '';
+        emailDomainInput.readOnly = false;  // Enable manual input
+    } else {
+        emailDomainInput.value = this.value;
+        emailDomainInput.readOnly = true;  // Prevent editing when auto-populating
+    }
+});
+
+function updateEmail() {
+    var emailLocalPart = document.getElementById('emailLocalPart').value;
+    var emailDomain = document.getElementById('emailDomain').value;
+    var fullEmail = emailLocalPart + "@" + emailDomain;
+    alert('Updated email: ' + fullEmail);
+}
+</script>
+
+</body>
+</html>

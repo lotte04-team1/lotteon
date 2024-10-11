@@ -18,26 +18,24 @@
             background-color: rgba(0,0,0,0.4);
 
         }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            border: 1px solid #888;
-            width: 80%;
-        }
+        
         .ordermodal-content {
             background-color: #fefefe;
             margin: 15% auto;
             border: 1px solid #888;
             height: 630px;
             width: 930px;
+            border: none;
+            border-radius: 15px;
         }
+
         .sellermodal-content {
             background-color: #fefefe;
             margin: 15% auto;
             border: 1px solid #888;
             height: 540px;
             width: 735px;
+            border-radius: 15px;
         }
         .inquirymodal-content{
             background-color: #fefefe;
@@ -45,6 +43,7 @@
             border: 1px solid #888;
             height: 540px;
             width: 735px;
+            border-radius: 15px;
         }
         .receiptConfirmmodal-content{
 
@@ -53,6 +52,7 @@
             border: 1px solid #888;
             height: 250px;
             width: 410px;
+            border-radius: 15px;
         }
         .reviewmodal-content{
             background-color: #fefefe;
@@ -60,6 +60,7 @@
             border: 1px solid #888;
             height: 540px;
             width: 735px;
+            border-radius: 15px;
         }
         .modal-section {
             padding: 15px 22.5px 20px 22.5px; /* 위쪽 15px, 좌우 22.5px, 아래쪽 20px */
@@ -83,17 +84,22 @@
             align-items: center; /* 수직 가운데 정렬 */
             border-bottom: 1px solid #ccc;
             padding: 10px 22.5px;
-            background-color: #558ED5;
+            background-color: #ef2a23;
+            /* background-color: #558ED5; */
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
         }
 
         .modal-nav h1 {
-            color:white;
+            color: white;
+            /* color:black; */
             margin: 0;
             font-size: 24px;
         }
 
         .modal-nav button {
             background-color: transparent;
+            /* color: black; */
             border: none;
             font-size: 30px;
             cursor: pointer;
@@ -175,14 +181,14 @@
             display: flex; /* 플렉스 박스 활성화 */
             justify-content: center; /* 가로 중앙 정렬 */
             gap: 5px;
-
         }
         .modalbutton{
-            background-color: #558ED5;
+            background-color: #ef2a23;
             border: 0px;
             width: 133px;
             height: 40px;
             color: white;
+            cursor: pointer;
         }
         .modalcanclebutton{
             background-color: #BFBFBF;
@@ -190,6 +196,7 @@
             width: 133px;
             height: 40px;
             color: white;
+            cursor: pointer;
         }
         .modalcontent textarea {
             margin-top: 5px;
@@ -244,15 +251,8 @@
                     <tr>
                         <td>20xx-01-01</td>
                         <td><img src="/main/resources/static/images/AA.jpg" alt="" class="modalimgsize"></td>
-                        <td class="order-info">
-                            <div class="order-number">
-                                주문번호: <span text="${order.orderNumber}">1012211341</span>
-                            </div>
-                            <div class="company-name" text="${order.companyName}">(주) 상호명</div>
-                            <div class="product-name" text="${order.productName}">상품명</div>
-                            <div>수량 : <span text="${order.quantity}"></span>1 개</div>
-                            <div class="product-price" style="font-size: 18px; font-weight: bold;" text="${order.price}">34,000원</div>
-                        </td>
+                        
+                        
                         <td class="modalprice-info">
                             <div class="modalprice-row">
                                 <span>판매가</span>
