@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">    
+    <title>롯데ON::대한민국 1등 온라인 쇼핑몰</title>    
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/main/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/css/my/star-rating-svg.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://kit.fontawesome.com/20962f3e4b.js" crossorigin="anonymous"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/static/js/member/zipcode.js"></script>
+    <script src="/staticjs/my/jquery.star-rating-svg.min.js"></script>
+    <script src="/static/js/my/popup.js"></script>
+    <link rel="stylesheet" href="/static/css/my/style.css">
+    <link rel="stylesheet" href="/static/css/my/order.css">
+    <link rel="stylesheet" href="/static/css/my/point.css">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div class="top">
+                <div>
+                    <!-- 로그인 안 한 경우 -->
+                    <a href="/member/login">로그인</a>
+                    <a href="/member/join">회원가입</a>
+
+                    <!-- 로그인 한 경우 -->
+                    <a href="#">마이페이지</a>
+                    <a href="/admin/index">관리자</a>
+                    <a href="/member/logout">로그아웃</a>
+                    <a href="#">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; 장바구니
+                    </a>
+                </div>
+            </div>
+            <div class="logo">
+                <div>
+                    <a href="/"><img src="/static/images/main/header_logo.png" alt="로고"/></a>
+                    <form action="#">
+                        <input type="text" name="search"/>
+                        <button><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </header>
+<!-- 내용 시작 -->
+<div id="my">
+    <!-- 마이페이지 상단 회원 정보 -->
+    <nav>
+        <div>
+            <a href="/static/js/my/home"><img src="/static/images/my/my_logo.jpg" alt="나의쇼핑정보"></a>
+            <!-- <div class="UserInfo">
+                <p>홍길동</p>
+                <p>VIP 회원</p>
+            </div> -->
+            <ol>
+                <li><a href="/my/order">주문·배송<span class="delivery"></span></a></li>
+                <li><a href="/my/coupon">할인쿠폰<span class="coupon"></span></a></li>
+                <li><a href="/my/point">포인트<span class="point"></span></a></li>
+                <li><a href="/my/qna">문의내역<span class="qna"></span></a></li>
+            </ol>
+        </div>
+    </nav>
+
+    <div class="point">
+        <!-- 마이페이지 사이드바 -->
+        <ul class="myCate">
+            <span class="menu_else"></span>
+            <li class=""><a href="/my/order">전체주문내역</a></li>
+            <li class=""><a href="/my/wish">관심상품</a></li>
+            <li class=""><a href="/my/point">포인트내역</a></li>
+            <li class=""><a href="/my/coupon">쿠폰</a></li>
+            <li class=""><a href="/my/review">나의리뷰</a></li>
+            <li class=""><a href="/my/qna">문의하기</a></li>
+            <li class=""><a href="/my/info">나의설정</a></li>
+        </ul>
+
+        <section>
+            <a href="#"><img src="/static/images/my/my_banner1.jpg" alt="패션, 타운 하나로 끝" class="banner"></a>
+            
+            <article class="latest">
+                <h3>포인트내역</h3>
+                <!-- 포인트내역 검색바 -->
+                <div class="myOrderSearch">
+                    <p>기간별 조회</p>
+                    <a href="/my/point" class="searchOn">전체</a>
+                    <a href="/my/point?cate=week">일주일</a>
+                    <a href="/my/point?cate=15day">15일</a>
+                    <a href="/my/point?cate=month">1개월</a>
+                    
+                    <a href="/my/point?cate=3month">3개월</a>
+                    <a href="/my/point?cate=6month">6개월</a>
+                    <a href="/my/point?cate=year">12개월</a>
+                    
+                    <form action="/my/point" method="get" class="searchCustomDate">
+                        <input type="date" name="startDate" onchange="checkDate()">
+                        <p style="display: inline-block; width: 10px;">~</p>
+                        <input type="date" name="finalDate" onchange="checkDate()">
+                        <input type="hidden" name="cate" value="custom">
+                        <input type="submit" value="검색">
+                    </form>
+                </div>
+
+                <!-- 포인트내역 목록 -->
+                <!-- 포인트 없을 때 -->
+                <!-- <div class="PointList">
+                    <div>
+                        <div>날짜</div>
+                        <div>구분</div>
+                        <div>적립금액</div>
+                        <div>비고</div>
+                    </div>
+                    <div style="justify-content: center;">
+                        <div style="border: 0;">
+                            <p style="font-size : 18px;">포인트내역이 없습니다.</p>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- 포인트 있을 때 -->
+                    <h3>포인트적립내역</h3>
+                    <table border="0">
+                        <tr>
+                            <th>날짜</th>
+                            <th>구분</th>
+                            <th>주문번호</th>
+                            <th>적립금액</th>                                
+                            <th>비고</th>
+                            <th>유효기간</th>
+                        </tr>
+                          <!-- 10개 출력이나 5개만 -->
+                        <tr>
+                            <td>2022-12-10</td>
+                            <td>적립</td>
+                            <td>2022121001</td>
+                            <td>340</td>
+                            <td>상품 구매확정</td>
+                            <td>2024-12-10</td>
+                        </tr>
+                        <tr>
+                            <td>2022-12-10</td>
+                            <td>적립</td>
+                            <td>2022121001</td>
+                            <td>340</td>
+                            <td>상품 구매확정</td>
+                            <td>2024-12-10</td>
+                        </tr>
+                        <tr>
+                            <td>2022-12-10</td>
+                            <td>적립</td>
+                            <td>2022121001</td>
+                            <td>340</td>
+                            <td>상품 구매확정</td>
+                            <td>2024-12-10</td>
+                        </tr>
+                        <tr>
+                            <td>2022-12-10</td>
+                            <td>적립</td>
+                            <td>2022121001</td>
+                            <td>340</td>
+                            <td>상품 구매확정</td>
+                            <td>2024-12-10</td>
+                        </tr>
+                        <tr>
+                            <td>2022-12-10</td>
+                            <td>적립</td>
+                            <td>2022121001</td>
+                            <td>340</td>
+                            <td>상품 구매확정</td>
+                            <td>2024-12-10</td>
+                        </tr>
+                    </table>
+              
+                        <!-- <div class="PointList">
+                            <div>
+                                <div>날짜</div>
+                                <div>구분</div>
+                                <div>적립금액</div>
+                                <div>비고</div>
+                            </div>
+                            <div>
+                                <div>2023-10-01</div>
+                                <div>적립</div>
+                                <div class="pointAfter">
+                                    <span>+1,000</span>
+                                </div>
+                                <div>주문 적립</div>
+                            </div>
+                            <div>
+                                <div>2023-09-15</div>
+                                <div>사용</div>
+                                <div class="pointAfter">
+                                    <span>-500</span>
+                                </div>
+                                <div>상품 구매</div>
+                            </div> -->
+
+                            <!-- 페이지 -->
+                            <p class="page">
+                                <a href="/my/point?pg=1">이전</a>
+                                <a class="pageNum" href="/my/point?pg=1" class="on">1</a>
+                                <a class="pageNum" href="/my/point?pg=2">2</a>
+                                <a class="pageNum" href="/my/point?pg=2">3</a>
+                                <a class="pageNum" href="/my/point?pg=2">4</a>
+                                <a class="pageNum" href="/my/point?pg=2">5</a>
+                                <a href="/my/point?pg=2">다음</a>
+                            </p>
+                    <!-- </div> -->
+                    </article>
+        </section>
+    </div>
+    </div>
+        <!-- 내용 끝 -->
+</body>
+</html>
