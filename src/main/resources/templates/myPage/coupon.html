@@ -8,44 +8,38 @@
     <title>롯데ON 마이페이지</title>
     <link rel="shortcut icon" type="image/x-icon" href="/static/images/main/favicon.ico" />
     <link rel="stylesheet" href="/static/css/my/style.css">
+    <link rel="stylesheet" href="/static/css//header.css">
+    <link rel="stylesheet" href="/static/css/footer.css">
     <link rel="stylesheet" href="/static/css/my/order.css">
     <link rel="stylesheet" href="/static/css/my/coupon.css">
 </head>
 <body>
     <div id="wrapper">
-        <header>
-            <div class="top">
-                <div>
-                    <!-- 로그인 안 한 경우 -->
-                    <a href="/member/login">로그인</a>
-                    <a href="/member/join">회원가입</a>
-
-                    <!-- 로그인 한 경우 -->
-                    <a href="#">마이페이지</a>
-                    <a href="/admin/index">관리자</a>
-                    <a href="/member/logout">로그아웃</a>
-                    <a href="#">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp; 장바구니
-                    </a>
+        <header class="header">
+            <div class="header__top">
+                <div class="center header__top__nav">
+                    
+                        <a href="#" th:href="@{/member/login}">로그인</a>
+                        <a href="#" th:href="@{/member/join}">회원가입</a>
+                        <a href="#" th:href="@{/my/home(userId=${#authentication.principal.user.userId})}">마이페이지</a>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;장바구니
+                        </a>
+                        <a href="#" th:href="@{/member/logout}">로그아웃</a>
                 </div>
             </div>
-            <div class="logo">
-                <div>
-                    <a href="/"><img src="/static/images/main/header_logo.png" alt="로고"/></a>
-                    <form action="#">
-                        <input type="text" name="search"/>
-                        <button><i class="fa fa-search"></i></button>
+            <div class="header__bot">
+                <div class="header__bot__wrapper center">
+                    <a class="logo" href="#" th:href="@{/}"><img class="logo__img" src="/static/images/header_logo.png" th:src="@{/images/header_logo.png}" alt="로고"/></a>
+                    <form class="search" action="/lotteon/product/search" method="get">
+                        <input class="search__input" type="text" name="keyword"/>
+                        <!-- <input  type="hidden" name="cateCode" id="cateCodeInput" value=""> -->
+                        <button class="search__btn"><img width="18" class="search__btn__img" src="/static/images/search.svg" /></button>
                     </form>
                 </div>
             </div>
         </header>
 <!--내용 시작-->
     <div id="my" layout:fragment="content">
-        <script>
-            window.onload = function (){
-                highlight();
-            }
-        </script>
         <!--마이페이지 상단 회원 정보-->
         <nav>
             <div>
